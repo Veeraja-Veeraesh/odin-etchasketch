@@ -4,6 +4,7 @@ const DEFAULT_COLOR = "#37c9f9";
 const DEFAULT_MODE = "color";
 
 let current_size = DEFAULT_SIZE;
+let previous_color = DEFAULT_COLOR;
 let current_color = DEFAULT_COLOR;
 let current_mode = DEFAULT_MODE;
 
@@ -29,7 +30,7 @@ let sketch_area = document.querySelector(".sketch-area");
 let slider_label = document.querySelector("#size-info");
 let slider_bar = document.querySelector("#size-slider");
 let clear_all_btn = document.querySelector("#clear_all");
-let undo_btn = document.querySelector("#undo");
+let random_btn = document.querySelector("#random");
 let save_btn = document.querySelector("#save");
 let primary_mouse_btn_down = false;
 
@@ -44,7 +45,7 @@ rainbow_btn.addEventListener("click", () => setCurrentMode("rainbow"));
 slider_bar.addEventListener("change", (e) => changeSize(e.target.value));
 slider_bar.addEventListener("mousemove", (e) => updateSliderLabel(e.target.value));
 clear_all_btn.addEventListener("click", () => loadGrid());
-undo_btn.addEventListener("click", () => undoAction());
+random_btn.addEventListener("click", () => fillRandomColors());
 save_btn.addEventListener("click", () => saveSketch());
 document.body.addEventListener("mousedown", () => primary_mouse_btn_down = true);
 document.body.addEventListener("mouseup", () => primary_mouse_btn_down = false);
@@ -129,6 +130,17 @@ function activateButton(new_mode) {
     } else if (new_mode === 'eraser') {
         eraser_btn.classList.add('active')
     }
+}
+
+
+function fillRandomColors() {
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach(cell => {
+        let red = Math.floor(Math.random() * 256);
+        let green = Math.floor(Math.random() * 256);
+        let blue = Math.floor(Math.random() * 256);
+        cell.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    });    
 }
 
 function saveSketch() {
