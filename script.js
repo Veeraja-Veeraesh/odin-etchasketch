@@ -16,13 +16,16 @@ function addCells(n) {
 }
 
 
-let color_picker = document.querySelector("#color-choose");
-let color_picker_value = document.querySelector('label[for="color-choose"]');
-color_picker.onchange = function() {
-    color_picker_value.innerHTML = color_picker.value.toString();
-}
-window.onload = () => {
-    color_picker_value.innerHTML = color_picker.value.toString()
-}
+document.addEventListener("DOMContentLoaded", function() {
+    let color_picker = document.querySelector("#color-choose");
+    let color_picker_value = document.querySelector('label[for="color-choose"]');
+
+    color_picker.addEventListener("input", function() {
+        color_picker_value.innerHTML = color_picker.value;
+    });
+
+    color_picker_value.innerHTML = color_picker.value;
+});
+
 
 addCells(16);
