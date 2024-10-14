@@ -1,6 +1,10 @@
 function addCells(n) {
     let sketcharea = document.querySelector('.sketch-area');
 
+    while (sketcharea.firstChild) {
+        sketcharea.removeChild(sketcharea.firstChild);
+    }
+
     for (i = 1; i <= n; i++){
         let row = document.createElement("div");
         row.classList.add("row");
@@ -27,5 +31,11 @@ document.addEventListener("DOMContentLoaded", function() {
     color_picker_value.innerHTML = color_picker.value;
 });
 
-
-addCells(16);
+let slider = document.querySelector("#size-slider");
+let sizeinfo = document.querySelector("#size-info");
+sizeinfo.innerHTML = `${slider.value} x ${slider.value}`;
+addCells(slider.value);
+slider.oninput = function() {
+    sizeinfo.innerHTML = `${this.value} x ${this.value}`;
+    addCells(this.value);
+}
