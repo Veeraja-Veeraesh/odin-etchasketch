@@ -1,5 +1,5 @@
 // Defining the default variables
-const DEFAULT_SIZE = 16;
+const DEFAULT_SIZE = 3;
 const DEFAULT_COLOR = "#37c9f9";
 const DEFAULT_MODE = "color";
 
@@ -130,4 +130,42 @@ function activateButton(new_mode) {
         eraser_btn.classList.add('active')
     }
 }
+
+function saveSketch() {
+    // Get the grid and its cells
+    const cells = document.querySelectorAll('.cell');
+    const gridSize = Math.sqrt(cells.length); // Assuming a square grid
+    const cellSize = cells[0].offsetWidth; // Assuming all cells are squares and same size
+
+    // Create a canvas with the same size as the grid
+    const canvas = document.createElement('canvas');
+    canvas.width = gridSize * cellSize;
+    canvas.height = gridSize * cellSize;
+    const ctx = canvas.getContext('2d');
+
+    // Iterate over the cells and draw each one onto the canvas
+    cells.forEach((cell, index) => {
+        let color = window.getComputedStyle(cell).backgroundColor;
+        // change cell color from black and transparent(seen as white on div but not on canvas), to white and opaque, seen as white on canvas
+        if (color === "rgba(0, 0, 0, 0)") color = "rgba(255, 255, 255, 100)"; 
+        
+        // Calculate the x and y position of each cell on the canvas
+        const x = (index % gridSize) * cellSize;
+        const y = Math.floor(index / gridSize) * cellSize;
+
+        // Set the fill style to the cell's background color and fill the rectangle
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, cellSize, cellSize);
+    });
+
+    // Convert the canvas content to an image file (Base64 data URL)
+    const dataURL = canvas.toDataURL('image/png');
+    
+    // Create a download link and trigger the download
+    const downloadLink = document.createElement('a');
+    downloadLink.href = dataURL;
+    downloadLink.download = 'grid-image.png';
+    downloadLink.click();
+}
+
 
