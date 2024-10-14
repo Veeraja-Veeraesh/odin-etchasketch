@@ -14,7 +14,7 @@ body {
 .header, .footer {
     background-color: #1b0f09;
     text-align: center;
-    color: whitesmoke
+    color: whitesmoke;
 }
 
 .header {
@@ -49,17 +49,24 @@ body {
     align-items: center;
 }
 
-/* .options.left {
-
-}
-
-*/
-
 .color-choose-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
+}
+
+button {
+    border-radius: 15px;
+    text-align: center;
+    width: 180px;
+    height: 50px;
+    font-size: 20px;
+}
+
+button.active {
+    background-color: #1b0f09;
+    color: whitesmoke;
 }
 
 button:hover,
@@ -95,17 +102,6 @@ input[type='color']::-webkit-color-swatch {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.tool {
-    text-align: center;
-    width: 180px;
-    height: 50px;
-    font-size: 20px;
-}
-
-/* 
-.options.right {
-
-} */
 
 .sketch-container {
     width: 600px;

@@ -16,7 +16,8 @@ function setCurrentColor(new_color) {
 }
 
 function setCurrentMode(new_mode) {
-    current_mode = new_mode
+    activateButton(new_mode);
+    current_mode = new_mode;
 }
 
 let color_wheel = document.querySelector("#color-choose");
@@ -53,6 +54,7 @@ function initialSetup() {
     setCurrentMode(DEFAULT_MODE);
     setCurrentColor(DEFAULT_COLOR);
     changeSize(DEFAULT_SIZE);
+    activateButton(DEFAULT_MODE);
     initializeLabels();
 }
 
@@ -111,4 +113,21 @@ function changeCellColor(e) {
     }
 }
 
+function activateButton(new_mode) {
+    if (current_mode === 'rainbow') {
+        rainbow_btn.classList.remove('active')
+    } else if (current_mode === 'color') {
+        color_btn.classList.remove('active')
+    } else if (current_mode === 'eraser') {
+        eraser_btn.classList.remove('active')
+    }
+
+    if (new_mode === 'rainbow') {
+        rainbow_btn.classList.add('active')
+    } else if (new_mode === 'color') {
+        color_btn.classList.add('active')
+    } else if (new_mode === 'eraser') {
+        eraser_btn.classList.add('active')
+    }
+}
 
