@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">Etch-a-Sketch</div>
+
+    <div class="content">
+        <div class="options left">
+            <div class="color-choose-container">
+                <input id="color-choose" type="color"/>
+                <label for="color-choose"></label>
+            </div>
+            <button class="tool pen">Pen</button>
+            <button class="tool eraser">Eraser</button>
+            <button class="tool rainbow">Rainbow Pen</button>
+        </div>
+
+        <div class="sketch-container">
+            <div class="sketch-area">
+                <!-- grid of cells -->
+            </div>
+        </div>
+
+        <div class="options right">
+            <button class="tool actions" id="clear_all">Clear All</button>
+            <button class="tool actions" id="undo">Undo</button>
+            <button class="tool actions" id="redo">Redo</button>
+            <button class="tool actions" id="save">Save</button>
+        </div>
+    </div>
+
+    <div class="footer">Made by MashupJam</div>
+</body>
+</html>
